@@ -55,6 +55,7 @@ public class RegisterActivity extends ActionBarActivity {
             Log.i("Cyntwikip", "Updating account details");
             //return to FireFeed
             finish();
+            return;
         }
         else {
             Log.i("Cyntwikip", "Initializing account details");

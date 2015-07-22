@@ -54,6 +54,7 @@ public class ContactsActivity extends ActionBarActivity{
             Log.i("Cyntwikip", "Updating contacts details");
             //return to FireFeed
             finish();
+            return;
         }
         else {
             Log.i("Cyntwikip", "Initializing contacts details");

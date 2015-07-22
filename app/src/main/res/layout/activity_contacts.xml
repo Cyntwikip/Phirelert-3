@@ -60,8 +60,7 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="280dp">
 
         </ListView>
 
@@ -78,6 +77,7 @@
                 android:textColor="@color/BGColorEnd"
                 android:textSize="30sp"
                 android:fontFamily="sans-serif-light"
+                android:background="@color/White"
                 android:onClick="endContacts"/>
             <Button
                 android:layout_width="wrap_content"
@@ -89,6 +89,7 @@
                 android:textColor="@color/BGColorEnd"
                 android:textSize="30sp"
                 android:fontFamily="sans-serif-light"
+                android:background="@color/White"
                 android:onClick="firefeedScreen"/>
         </FrameLayout>
 

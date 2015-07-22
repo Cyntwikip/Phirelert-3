@@ -54,6 +54,7 @@ public class LookoutsActivity extends ActionBarActivity {
             Log.i("Cyntwikip", "Updating lookouts details");
             //return to FireFeed
             finish();
+            return;
         }
         else {
             Log.i("Cyntwikip", "Initializing lookouts details");
