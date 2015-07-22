@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PHirelert</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="PREF_NAME">Cyntwikip</string>
+    <string name="login">com.cyntwikip.android.phirelert.login</string>
+</resources>

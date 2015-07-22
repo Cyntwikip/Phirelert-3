@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!--<style name="AppTheme" parent="android:Theme.Material">-->
+        <!--<item name="android:colorPrimary">@color/ColorPrimary</item>-->
+        <!--<item name="android:colorPrimaryDark">@color/ColorPrimaryDark</item>-->
+        <!--&lt;!&ndash;<item name="android:background">@drawable/toolbar_bg</item>&ndash;&gt;-->
+    <!--</style>-->
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+    </style>
+
+</resources>

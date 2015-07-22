@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ColorPrimary">#F76C29</color>
+    <color name="ColorPrimaryDark">#E75C19</color>
+    <color name="tabsScrollColor">#F35921</color>
+
+    <color name="BGColorStart">#F59D32</color>
+    <color name="BGColorEnd">#EA1915</color>
+
+    <color name="NavDrawerColor">#E0E21514</color>
+
+    <color name="ColorSub">#D36C3F</color>
+
+    <color name="White">#FFFFFF</color>
+    <color name="PeachPuff">#FFDAB9</color>
+
+    <color name="ReportButtonColor">#B90000</color>
+    <color name="ReportButtonColorPressed">#970000</color>
+</resources>

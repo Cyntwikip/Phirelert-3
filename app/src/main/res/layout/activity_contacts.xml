@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@drawable/background">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="-10dp"
+        android:layout_gravity="center"
+        android:src="@drawable/contacts"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-15dp"
+        android:text="CONTACTS"
+        android:textColor="@color/White"
+        android:textSize="35sp"
+        android:fontFamily="sans-serif-light"
+        android:textStyle="normal"
+        android:layout_gravity="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="family and friends"
+        android:textColor="@color/White"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-light"
+        android:textStyle="normal"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_marginBottom="10dp">-->
+            <!--<EditText-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"/>-->
+            <!--<Button-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@color/White"-->
+                <!--android:text="+"-->
+                <!--android:textSize="40sp"-->
+                <!--android:textColor="@color/ColorPrimary"-->
+                <!--android:fontFamily="sans-serif-light"/>-->
+        <!--</LinearLayout>-->
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+        </ListView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:text="Back"
+                android:textColor="@color/BGColorEnd"
+                android:textSize="30sp"
+                android:fontFamily="sans-serif-light"
+                android:onClick="endContacts"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:text="Next"
+                android:textColor="@color/BGColorEnd"
+                android:textSize="30sp"
+                android:fontFamily="sans-serif-light"
+                android:onClick="firefeedScreen"/>
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

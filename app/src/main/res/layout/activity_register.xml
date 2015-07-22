@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background">
+
+    <!--Contact-->
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/contacticn"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-light"
+        android:textSize="25sp"
+        android:text="NAME"
+        android:textColor="@color/White"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:layout_gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:textColor="@color/White"
+        android:textSize="20sp"
+        android:hint="Jude Michael Teves"
+        android:textColorHint="@color/White"
+        android:fontFamily="sans-serif-light"
+        android:background="#40FFFFFF"/>
+
+    <!--Phone Number-->
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/phone"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-light"
+        android:textSize="25sp"
+        android:text="PHONE NUMBER"
+        android:textColor="@color/White"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:layout_gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:textColor="@color/White"
+        android:textSize="20sp"
+        android:hint="09166267392"
+        android:textColorHint="@color/White"
+        android:fontFamily="sans-serif-light"
+        android:background="#40FFFFFF"/>
+
+    <!--Home Address-->
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/houseicn"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-light"
+        android:textSize="25sp"
+        android:text="HOME ADDRESS"
+        android:textColor="@color/White"/>
+
+    <EditText android:id="@+id/activity_register_home_address"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="2"
+        android:layout_gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:textColor="@color/White"
+        android:textSize="20sp"
+        android:hint="Unit 2510 2 Torre Lorenzo\nTaft Ave. Malate Manila"
+        android:textColorHint="@color/White"
+        android:fontFamily="sans-serif-light"
+        android:background="#40FFFFFF"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="#F9D512"
+        android:textSize="30sp"
+        android:text="Register"
+        android:textColor="#FF2200"
+        android:onClick="lookoutsScreen"/>
+
+
+
+
+</LinearLayout>

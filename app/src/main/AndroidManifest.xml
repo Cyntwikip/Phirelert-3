@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cyntwikip.android.phirelert" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:icon="@drawable/logo"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".StartupActivity"
+            android:label="" >
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cyntwikip.android.phirelert.MainActivity" />
+        </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:label="" >
+            android:parentActivityName=".StartupActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cyntwikip.android.phirelert.StartupActivity" />
+        </activity>
+        <activity
+            android:name=".LookoutsActivity"
+            android:label="" >
+            android:parentActivityName=".RegisterActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cyntwikip.android.phirelert.RegisterActivity" />
+        </activity>
+        <activity
+            android:name=".ContactsActivity"
+            android:label="" >
+            android:parentActivityName=".LookoutsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cyntwikip.android.phirelert.LookoutsActivity" />
+        </activity>
+        <activity
+            android:name=".FireFeedActivity"
+            android:label="" >
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cyntwikip.android.phirelert.MainActivity" />
+        </activity>
+    </application>
+
+</manifest>
