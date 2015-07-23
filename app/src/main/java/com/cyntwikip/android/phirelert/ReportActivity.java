@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.cyntwikip.android.phirelert.GeoLocation.Constants;
 import com.cyntwikip.android.phirelert.GeoLocation.FetchAddressIntentService;
+import com.cyntwikip.android.phirelert.utils.Util;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -156,7 +157,7 @@ public class ReportActivity extends ActionBarActivity implements
         } catch(Exception ex) {}
 
         try {
-            //internet_active = Util.isOnline();
+            internet_active = Util.isOnline();
         } catch(Exception ex) {}
 
         if(!gps_enabled || !internet_active) {
