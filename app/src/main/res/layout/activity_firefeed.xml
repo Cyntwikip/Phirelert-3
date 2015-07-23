@@ -52,7 +52,9 @@
                     android:onClick="startReport"/>
             </LinearLayout>
 
-            <!-- The navigation drawer -->
+            
+
+             <!--The navigation drawer-->
             <ListView android:id="@+id/right_drawer"
                 android:layout_width="160dp"
                 android:layout_height="match_parent"
@@ -61,6 +63,12 @@
                 android:divider="@android:color/transparent"
                 android:dividerHeight="0dp"
                 android:background="@color/NavDrawerColor"/>
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="160dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="vertical"></LinearLayout>-->
+
         </android.support.v4.widget.DrawerLayout>
 
     </FrameLayout>

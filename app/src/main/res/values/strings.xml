@@ -6,4 +6,25 @@
 
     <string name="PREF_NAME">Cyntwikip</string>
     <string name="login">com.cyntwikip.android.phirelert.login</string>
+
+
+    <!-- for location getter -->
+    <string name="no_location_detected">No Location Detected</string>
+    <string name="start_updates">Start Updating</string>
+    <string name="stop_updates">Stop Updating</string>
+    <string name="last_update_time_label">Last Update Time: </string>
+    <string name="location_updated_message">Location Updated</string>
+    <string name="no_location_data_provided">No Location Data Provided</string>
+    <string name="service_not_available">Service Not Available!</string>
+    <string name="invalid_lat_long_used">Invalid Latitude and Longitude values</string>
+    <string name="no_address_found">No address found</string>
+    <string name="address_found">Address is found</string>
+
+    <string name="fetch_address">Get\nLocation</string>
+    <string name="no_geocoder_available">No geocoder available</string>
+    <string name="title_display_location">Location Address</string>
+    <string name="title_activity_gmaps">Map</string>
+    <string name="title_activity_report_page">ReportPage</string>
+    <!-- end -->
+
 </resources>

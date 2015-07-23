@@ -114,7 +114,9 @@ public class FireFeedActivity extends ActionBarActivity  {
     }
 
     public void startReport(View view) {
-        Toast.makeText(getApplicationContext(), "No Report functionality for now...", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "No Report functionality for now...", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, ReportActivity.class);
+        startActivity(intent);
     }
 
     //http://stackoverflow.com/questions/8430805/android-clicking-twice-the-back-button-to-exit-activity
