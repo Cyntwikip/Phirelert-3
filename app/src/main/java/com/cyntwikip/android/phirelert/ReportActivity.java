@@ -85,7 +85,7 @@ public class ReportActivity extends ActionBarActivity implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report_fire);
+        setContentView(R.layout.activity_report);
 
         // Creating The Toolbar and setting it as the Toolbar for the activity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
