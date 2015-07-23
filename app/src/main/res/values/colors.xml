@@ -12,6 +12,7 @@
     <color name="ColorSub">#D36C3F</color>
 
     <color name="White">#FFFFFF</color>
+    <color name="Black">#000000</color>
     <color name="PeachPuff">#FFDAB9</color>
 
     <color name="ReportButtonColor">#B90000</color>

@@ -1,8 +1,10 @@
 package com.cyntwikip.android.phirelert;
 
+import android.content.Context;
 import android.content.Intent;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
@@ -144,6 +146,25 @@ public class ReportActivity extends ActionBarActivity implements
      * GoogleApiClient is connected.
      */
     public void fetchAddressButtonHandler(View view) {
+        //http://stackoverflow.com/questions/10311834/how-to-check-if-location-services-are-enabled
+        LocationManager lm = (LocationManager)getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+        boolean gps_enabled = false;
+        boolean internet_active = false;
+
+        try {
+            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch(Exception ex) {}
+
+        try {
+            //internet_active = Util.isOnline();
+        } catch(Exception ex) {}
+
+        if(!gps_enabled || !internet_active) {
+            // notify user
+            Toast.makeText(this, "No active connection or GPS is off.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         // We only start the service to fetch the address if GoogleApiClient is connected.
         if (mGoogleApiClient.isConnected() && mLastLocation != null) {
             startIntentService();
