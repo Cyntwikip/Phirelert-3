@@ -7,7 +7,8 @@
     <color name="BGColorStart">#F59D32</color>
     <color name="BGColorEnd">#EA1915</color>
 
-    <color name="NavDrawerColor">#E0E21514</color>
+    <color name="NavDrawerHeader">#E0E21514</color>
+    <color name="NavDrawerBody">#E0FFFFFF</color>
 
     <color name="ColorSub">#D36C3F</color>
 

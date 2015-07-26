@@ -9,11 +9,17 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Cyntwikip on 7/22/2015.
  */
 public class LookoutsActivity extends ActionBarActivity {
+
+    private String[] locations = {"Metro Manila", "Cebu", "Davao"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +27,7 @@ public class LookoutsActivity extends ActionBarActivity {
         //setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_lookouts);
 
+        populateLookouts();
     }
 
     @Override
@@ -43,6 +50,16 @@ public class LookoutsActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void populateLookouts() {
+        List<String> list = new ArrayList<>();
+        for(int i=0; i<locations.length; i++) {
+            list.add(locations[i]);
+        }
+        ListView lookouts_listview = (ListView) findViewById(R.id.lookouts_listview);
+        LookoutsListAdapter adapter = new LookoutsListAdapter(getApplicationContext(), R.layout.lookouts_list_item, list);
+        lookouts_listview.setAdapter(adapter);
     }
 
     public void contactsScreen(View view) {

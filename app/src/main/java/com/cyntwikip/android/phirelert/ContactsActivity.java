@@ -1,5 +1,6 @@
 package com.cyntwikip.android.phirelert;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,17 +10,27 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+
+import com.cyntwikip.android.phirelert.model.Contact;
+import com.cyntwikip.android.phirelert.utils.ContactManager;
+
+import java.util.ArrayList;
 
 /**
  * Created by Cyntwikip on 7/22/2015.
  */
 public class ContactsActivity extends ActionBarActivity{
 
+    private String TAG = "Cyntwikip-Contacts";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_contacts);
+
+        populateContacts();
 
     }
 
@@ -45,19 +56,58 @@ public class ContactsActivity extends ActionBarActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    private void populateContacts() {
+        ContentResolver cr = this.getContentResolver();
+        ArrayList<Contact> contactsRaw = ContactManager.getContactsList(cr);
+        ArrayList<Contact> contactsModified = new ArrayList<>();
+
+        int k=0;
+        for(int i=0; i<contactsRaw.size(); i++) {
+            //if (string.trim().length() > 0)
+            String number = "";
+            try {
+                number = (String) contactsRaw.get(i).getPhoneNumbers().get(0);
+            } catch(Exception e) {};
+
+            if(number.trim().length() > 0) {
+            contactsModified.add(new Contact(Integer.toString(k), contactsRaw.get(i).getDisplayName(), number));
+            k++;
+            }
+        }
+
+        //print in log
+//        for(int i=0; i<contactsModified.size(); i++) {
+//            String name = contactsModified.get(i).getDisplayName();
+//            String number = (String)contactsModified.get(i).getPhoneNumbers().get(0);
+//            Log.i(TAG, "Name: " + name + " || " + "Number: " + number);
+//        }
+
+        ListView contact_listview = (ListView) findViewById(R.id.contact_listview);
+        ContactListAdapter adapter = new ContactListAdapter(getApplicationContext(), R.layout.contact_list_item, contactsModified);
+        contact_listview.setAdapter(adapter);
+
+//        for(int i=0; i<contactsRaw.size(); i++) {
+//            Log.i(TAG, "Name: " + contactsRaw.get(i).getDisplayName());
+//            ArrayList<String> numbers = contactsRaw.get(i).getPhoneNumbers();
+//            for(int j=0; j<numbers.size(); j++) {
+//                Log.i(TAG, "Number: " + numbers.get(j));
+//            }
+//        }
+    }
+
     public void firefeedScreen(View view) {
 //        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
 
         boolean login = sharedPref.getBoolean(getString(R.string.login), false);
         if(login==true) {
-            Log.i("Cyntwikip", "Updating contacts details");
+            Log.i(TAG, "Updating contacts details");
             //return to FireFeed
             finish();
             return;
         }
         else {
-            Log.i("Cyntwikip", "Initializing contacts details");
+            Log.i(TAG, "Initializing contacts details");
         }
 
         SharedPreferences.Editor editor = sharedPref.edit();

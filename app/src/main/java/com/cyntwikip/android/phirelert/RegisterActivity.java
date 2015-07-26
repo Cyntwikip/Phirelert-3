@@ -5,10 +5,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+
+import com.cyntwikip.android.phirelert.utils.ContactManager;
 
 
 public class RegisterActivity extends ActionBarActivity {
@@ -22,6 +26,13 @@ public class RegisterActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_register);
+
+        //set mobile number
+        TelephonyManager tm = (TelephonyManager)getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+        String number = ContactManager.getContactNumberFromSIM(tm);
+        EditText num = (EditText) findViewById(R.id.register_mobile_number);
+        num.setText("heyy");
+        num.setText(number);
     }
 
     @Override

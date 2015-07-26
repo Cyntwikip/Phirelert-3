@@ -6,7 +6,7 @@
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="-10dp"
+        android:layout_marginTop="0dp"
         android:layout_gravity="center"
         android:src="@drawable/contacts"/>
     <TextView
@@ -58,11 +58,25 @@
                 <!--android:fontFamily="sans-serif-light"/>-->
         <!--</LinearLayout>-->
 
-        <ListView
+        <ListView android:id="@+id/contact_listview"
             android:layout_width="match_parent"
-            android:layout_height="280dp">
-
+            android:layout_height="260dp"
+            android:background="#F0FFFFFF"
+            android:drawSelectorOnTop="true"
+            android:layout_marginBottom="20dp">
         </ListView>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="#FFFFFF"-->
+            <!--android:layout_marginBottom="20dp">-->
+            <!--<ListView android:id="@+id/contact_listview"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="260dp"-->
+                <!--android:listSelector="@drawable/list_item_ripple"-->
+                <!--android:drawSelectorOnTop="true">-->
+            <!--</ListView>-->
+        <!--</LinearLayout>-->
 
         <FrameLayout
             android:layout_width="match_parent"

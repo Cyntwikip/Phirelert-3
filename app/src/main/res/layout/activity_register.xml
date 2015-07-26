@@ -21,7 +21,7 @@
         android:text="NAME"
         android:textColor="@color/White"/>
 
-    <EditText
+    <EditText android:id="@+id/register_name"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -52,10 +52,11 @@
         android:layout_gravity="center"
         android:fontFamily="sans-serif-light"
         android:textSize="25sp"
-        android:text="PHONE NUMBER"
+        android:text="MOBILE NUMBER"
         android:textColor="@color/White"/>
 
-    <EditText
+    <EditText android:id="@+id/register_mobile_number"
+        android:inputType="phone"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -67,10 +68,12 @@
         android:gravity="center"
         android:textColor="@color/White"
         android:textSize="20sp"
-        android:hint="09166267392"
+
         android:textColorHint="@color/White"
         android:fontFamily="sans-serif-light"
-        android:background="#40FFFFFF"/>
+        android:background="#40FFFFFF"
+        android:editable="true"/>
+    <!--android:hint="09166267392"-->
 
     <!--Home Address-->
     <ImageView

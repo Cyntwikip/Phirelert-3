@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,9 +22,10 @@ import com.cyntwikip.android.phirelert.FireFeed.ViewPagerAdapter;
 
 
 public class FireFeedActivity extends ActionBarActivity  {
-    private String[] navItems = {"Locations", "Contacts", "Notifications", "Account"};
+    private String[] navItems = {"Locations", "Contacts", "Account"};
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
+    private LinearLayout mDrawer;
 
     ViewPager pager;
     ViewPagerAdapter adapter;
@@ -81,7 +83,8 @@ public class FireFeedActivity extends ActionBarActivity  {
 
     private void setNavDrawer() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.right_drawer);
+        mDrawer = (LinearLayout) findViewById(R.id.right_drawer);
+        mDrawerList = (ListView) findViewById(R.id.drawer_listview);
 
         // Set the adapter for the list view
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.navdrawer_list_item, navItems));
@@ -151,7 +154,7 @@ public class FireFeedActivity extends ActionBarActivity  {
 
             //String text= "menu click... should be implemented";
             //Toast.makeText(this, text, Toast.LENGTH_LONG).show();
-            mDrawerLayout.closeDrawer(mDrawerList);
+            mDrawerLayout.closeDrawer(mDrawer);
 
             Intent intent;
             switch(position) {
@@ -165,7 +168,7 @@ public class FireFeedActivity extends ActionBarActivity  {
                     startActivity(intent);
                     //finish();
                     break;
-                case 3:
+                case 2:
                     intent = new Intent(getApplicationContext(), RegisterActivity.class);
                     startActivity(intent);
                     //finish();

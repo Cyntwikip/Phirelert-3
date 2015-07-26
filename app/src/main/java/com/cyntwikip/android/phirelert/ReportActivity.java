@@ -34,7 +34,7 @@ import com.google.android.gms.location.LocationServices;
 public class ReportActivity extends ActionBarActivity implements
         ConnectionCallbacks, OnConnectionFailedListener {
 
-    protected static final String TAG = "main-activity";
+    protected static final String TAG = "Cyntwikip-Location";
 
     protected static final String ADDRESS_REQUESTED_KEY = "address-request-pending";
     protected static final String LOCATION_ADDRESS_KEY = "location-address";
@@ -162,12 +162,17 @@ public class ReportActivity extends ActionBarActivity implements
 
         if(!gps_enabled || !internet_active) {
             // notify user
+            Log.i(TAG, "GPS: "+ gps_enabled);
+            Log.i(TAG, "Active Connection: "+ internet_active);
             Toast.makeText(this, "No active connection or GPS is off.", Toast.LENGTH_LONG).show();
             return;
         }
 
         // We only start the service to fetch the address if GoogleApiClient is connected.
+        //if (mGoogleApiClient.isConnected() && mLastLocation != null) {
         if (mGoogleApiClient.isConnected() && mLastLocation != null) {
+            Log.i(TAG, "Google API Client: " + mGoogleApiClient.isConnected());
+            Log.i(TAG, "Location Accuracy: " + mLastLocation.getAccuracy());
             startIntentService();
         }
         // If GoogleApiClient isn't connected, we process the user's request by setting
@@ -322,7 +327,7 @@ public class ReportActivity extends ActionBarActivity implements
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_report, menu);
         return true;
     }
 

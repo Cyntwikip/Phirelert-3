@@ -6,10 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.cyntwikip.android.phirelert.R;
 import com.cyntwikip.android.phirelert.model.Report;
@@ -56,13 +54,13 @@ public class Tab2 extends Fragment {
         //ListView listView = (ListView)layout.findViewById(R.id.);
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                String itemPicked = "Fire in " + adapter.getItem(position).getLocation() + "!!";
-                Toast.makeText(getActivity(), itemPicked, Toast.LENGTH_SHORT).show();
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+//                String itemPicked = "Fire in " + adapter.getItem(position).getLocation() + "!!";
+//                Toast.makeText(getActivity(), itemPicked, Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         return layout;
     }
