@@ -11,6 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.cyntwikip.android.phirelert.model.DatabaseHandler;
+import com.cyntwikip.android.phirelert.model.Location;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +22,11 @@ import java.util.List;
  */
 public class LookoutsActivity extends ActionBarActivity {
 
+    private String TAG = "Cyntwikip-Lookouts";
     private String[] locations = {"Metro Manila", "Cebu", "Davao"};
+    private ListView lookouts_listview;
+    private LookoutsListAdapter adapter;
+    private List<Location> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +60,52 @@ public class LookoutsActivity extends ActionBarActivity {
     }
 
     private void populateLookouts() {
-        List<String> list = new ArrayList<>();
-        for(int i=0; i<locations.length; i++) {
-            list.add(locations[i]);
+        DatabaseHandler db = new DatabaseHandler(this);
+        List<Location> fromDB = db.getAllLocations();
+
+        //for testing purposes
+        for(int i=0; i<fromDB.size(); i++) {
+            Log.i(TAG, fromDB.get(i).getLocation());
         }
-        ListView lookouts_listview = (ListView) findViewById(R.id.lookouts_listview);
-        LookoutsListAdapter adapter = new LookoutsListAdapter(getApplicationContext(), R.layout.lookouts_list_item, list);
+
+        int k=0;
+        for(int i=0; i<locations.length; i++) {
+            list.add(new Location(locations[i]));
+            for(int c=0; c<fromDB.size(); c++) {
+                if(locations[i].equals(fromDB.get(c).getLocation())) {
+                    list.get(k).setIsChecked(true);
+                }
+            }
+            k++;
+        }
+
+        lookouts_listview = (ListView) findViewById(R.id.lookouts_listview);
+        adapter = new LookoutsListAdapter(getApplicationContext(), R.layout.lookouts_list_item, list);
         lookouts_listview.setAdapter(adapter);
+    }
+
+    private List<Location> getCheckedItems() {
+        boolean[] checked = adapter.getItemsChecked();
+        List<Location> locations = new ArrayList<>();
+
+        for(int i=0; i<list.size(); i++) {
+            if(checked[i]) {
+                Log.i(TAG, list.get(i).getLocation());
+                Location loc = new Location(list.get(i).getLocation());
+                locations.add(loc);
+            }
+        }
+        return locations;
+    }
+
+    private void storeLocationstoDB() {
+        DatabaseHandler db = new DatabaseHandler(this);
+        db.deleteAllLocations();
+        List<Location> locations = getCheckedItems();
+        for(int i=0; i<locations.size(); i++) {
+            Log.i(TAG, "Added " + locations.get(i).getLocation() + " to database.");
+            db.addLocation(locations.get(i));
+        }
     }
 
     public void contactsScreen(View view) {
@@ -69,12 +115,14 @@ public class LookoutsActivity extends ActionBarActivity {
         boolean login = sharedPref.getBoolean(getString(R.string.login), false);
         if(login==true) {
             Log.i("Cyntwikip", "Updating lookouts details");
+            storeLocationstoDB();
             //return to FireFeed
             finish();
             return;
         }
         else {
             Log.i("Cyntwikip", "Initializing lookouts details");
+            storeLocationstoDB();
         }
 
         Intent intent = new Intent(this, ContactsActivity.class);

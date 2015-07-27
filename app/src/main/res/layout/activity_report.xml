@@ -36,14 +36,14 @@
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
-            <RadioButton
+            <RadioButton android:id="@+id/radiobtn_GPS"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="center"
                 android:onClick="fetchAddressButtonHandler"/>
-            <RadioButton
+            <RadioButton android:id="@+id/radiobtn_home"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -89,9 +89,9 @@
                         android:textColor="#000000"
                         android:textSize="20sp"
                         android:fontFamily="sans-serif-light"
-                        android:hint="Science Hub Tower 3 Campus Ave. Taguig"
+                        android:hint="Enter location here..."
                         android:textColorHint="@color/Black"/>
-
+                    <!--android:hint="Science Hub Tower 3 Campus Ave. Taguig"-->
                 </RelativeLayout>
 
 
@@ -134,7 +134,7 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
-        <CheckBox
+        <CheckBox android:id="@+id/checkbox_SMS"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
@@ -184,7 +184,7 @@
             android:layout_gravity="center"
             android:background="@drawable/button_selector"
             android:textColor="@color/White"
-            android:onClick="closeReport"/>
+            android:onClick="sendReport"/>
 
 
         <!--<ProgressBar-->

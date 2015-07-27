@@ -31,6 +31,11 @@ public class ContactListAdapter extends ArrayAdapter<Contact>{
         this.contacts = contacts;
         buttonChecked = new boolean[contacts.size()];
         Arrays.fill(buttonChecked, Boolean.FALSE);
+        for(int i=0; i<contacts.size(); i++) {
+            if(contacts.get(i).isChecked()) {
+                buttonChecked[i] = true;
+            }
+        }
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -50,7 +55,7 @@ public class ContactListAdapter extends ArrayAdapter<Contact>{
 
         c1.setText(name);
         c2.setText(number);
-        //this.buttonChecked[position] = false;
+        //this.buttonChecked[position] = c.isChecked();
 
         c3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -61,17 +66,17 @@ public class ContactListAdapter extends ArrayAdapter<Contact>{
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonChecked[position]==false)
-                    buttonChecked[position] = true;
-                else
-                    buttonChecked[position] = false;
-                c3.setChecked(buttonChecked[position]);
+                c3.setChecked(!buttonChecked[position]);
             }
         });
 
         c3.setChecked(buttonChecked[position]);
 
         return convertView;
+    }
+
+    public boolean[] getItemsChecked() {
+        return buttonChecked;
     }
 
 }

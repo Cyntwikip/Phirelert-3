@@ -61,7 +61,7 @@ public class ContactManager {
         return number;
     }
 
-    public void sendSMStoCellphone(String destNumber, String areaCode, String location) {
+    public static void sendSMStoCellphone(String destNumber, String areaCode, String location) {
         SmsManager manager = SmsManager.getDefault();
         String text = "";
         text += "REPORT " + areaCode + " " + location;

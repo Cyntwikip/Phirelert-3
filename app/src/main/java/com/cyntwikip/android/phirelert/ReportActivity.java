@@ -14,19 +14,28 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cyntwikip.android.phirelert.GeoLocation.Constants;
 import com.cyntwikip.android.phirelert.GeoLocation.FetchAddressIntentService;
+import com.cyntwikip.android.phirelert.model.Account;
+import com.cyntwikip.android.phirelert.model.Contact2;
+import com.cyntwikip.android.phirelert.model.DatabaseHandler;
+import com.cyntwikip.android.phirelert.utils.ContactManager;
 import com.cyntwikip.android.phirelert.utils.Util;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.location.LocationServices;
+
+import java.util.List;
 
 /**
  * Created by Cyntwikip on 6/28/2015.
@@ -94,9 +103,7 @@ public class ReportActivity extends ActionBarActivity implements
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /* To Update the Home Address in Report Screen */
-//        EditText editText = (EditText) findViewById(R.id.activity_report_fire_home_address);
-//        editText.setText(RegisterActivity.homeAddress, TextView.BufferType.EDITABLE);
+        init();
 
         mResultReceiver = new AddressResultReceiver(new Handler());
 
@@ -111,6 +118,16 @@ public class ReportActivity extends ActionBarActivity implements
 
         updateUIWidgets();
         buildGoogleApiClient();
+    }
+
+    private void init() {
+        try {
+        /* To Update the Home Address in Report Screen */
+            DatabaseHandler db = new DatabaseHandler(this);
+            Account acc = db.getAllAccounts().get(0);
+            TextView editText = (TextView) findViewById(R.id.activity_report_fire_home_address);
+            editText.setText(acc.getAddress());
+        } catch(Exception e) {}
     }
 
     /**
@@ -346,7 +363,48 @@ public class ReportActivity extends ActionBarActivity implements
         return super.onOptionsItemSelected(item);
     }
 
-    public void closeReport(View view) {
+    public void sendReport(View view) {
+
+        RadioButton gps = (RadioButton)findViewById(R.id.radiobtn_GPS);
+        RadioButton home = (RadioButton)findViewById(R.id.radiobtn_home);
+
+        if(home.isChecked()==false && gps.isChecked()==false) {
+            Toast.makeText(getApplicationContext(), "Please choose a location.",
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        String address;
+        if(gps.isChecked()) {
+            TextView location = (TextView)findViewById(R.id.location_address_view);
+            address = location.getText().toString();
+        }
+        else {
+            TextView location = (TextView)findViewById(R.id.activity_report_fire_home_address);
+            address = location.getText().toString();
+        }
+
+        CheckBox c = (CheckBox)findViewById(R.id.checkbox_SMS);
+        if(c.isChecked()) {
+            sendMSG(address);
+        }
+
         finish();
+    }
+
+    private void sendMSG(String address) {
+        DatabaseHandler db = new DatabaseHandler(this);
+        List<Contact2> contacts = db.getAllContacts();
+//        TextView location = (TextView)findViewById(R.id.location_address_view);
+//        String address = location.getText().toString();
+
+        try {
+            for (int i = 0; i < contacts.size(); i++) {
+                Contact2 contact = contacts.get(i);
+                ContactManager.sendSMStoCellphone(contact.getNumber(), "Metro Manila", address);
+            }
+        } catch(Exception e) {}
+        Toast.makeText(getApplicationContext(), "SMS Sent!",
+                Toast.LENGTH_LONG).show();
     }
 }

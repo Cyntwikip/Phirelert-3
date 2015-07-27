@@ -13,9 +13,12 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.cyntwikip.android.phirelert.model.Contact;
+import com.cyntwikip.android.phirelert.model.Contact2;
+import com.cyntwikip.android.phirelert.model.DatabaseHandler;
 import com.cyntwikip.android.phirelert.utils.ContactManager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Cyntwikip on 7/22/2015.
@@ -23,6 +26,9 @@ import java.util.ArrayList;
 public class ContactsActivity extends ActionBarActivity{
 
     private String TAG = "Cyntwikip-Contacts";
+    private ArrayList<Contact> contactsModified = new ArrayList<>();
+    private ListView contact_listview;
+    private ContactListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +65,8 @@ public class ContactsActivity extends ActionBarActivity{
     private void populateContacts() {
         ContentResolver cr = this.getContentResolver();
         ArrayList<Contact> contactsRaw = ContactManager.getContactsList(cr);
-        ArrayList<Contact> contactsModified = new ArrayList<>();
+        DatabaseHandler db = new DatabaseHandler(this);
+        List<Contact2> fromDB = db.getAllContacts();
 
         int k=0;
         for(int i=0; i<contactsRaw.size(); i++) {
@@ -70,8 +77,13 @@ public class ContactsActivity extends ActionBarActivity{
             } catch(Exception e) {};
 
             if(number.trim().length() > 0) {
-            contactsModified.add(new Contact(Integer.toString(k), contactsRaw.get(i).getDisplayName(), number));
-            k++;
+                contactsModified.add(new Contact(Integer.toString(k), contactsRaw.get(i).getDisplayName(), number));
+                for(int c=0; c<fromDB.size(); c++) {
+                    if(number.equals(fromDB.get(c).getNumber())) {
+                        contactsModified.get(k).setIsChecked(true);
+                    }
+                }
+                k++;
             }
         }
 
@@ -82,8 +94,8 @@ public class ContactsActivity extends ActionBarActivity{
 //            Log.i(TAG, "Name: " + name + " || " + "Number: " + number);
 //        }
 
-        ListView contact_listview = (ListView) findViewById(R.id.contact_listview);
-        ContactListAdapter adapter = new ContactListAdapter(getApplicationContext(), R.layout.contact_list_item, contactsModified);
+        contact_listview = (ListView) findViewById(R.id.contact_listview);
+        adapter = new ContactListAdapter(getApplicationContext(), R.layout.contact_list_item, contactsModified);
         contact_listview.setAdapter(adapter);
 
 //        for(int i=0; i<contactsRaw.size(); i++) {
@@ -95,6 +107,29 @@ public class ContactsActivity extends ActionBarActivity{
 //        }
     }
 
+    private List<Contact2> getCheckedItems() {
+        boolean[] checked = adapter.getItemsChecked();
+        List<Contact2> contacts = new ArrayList<>();
+
+        for(int i=0; i<contactsModified.size(); i++) {
+            if(checked[i]) {
+                Log.i(TAG, contactsModified.get(i).getDisplayName());
+                Contact2 contact = new Contact2((String)contactsModified.get(i).getPhoneNumbers().get(0));
+                contacts.add(contact);
+            }
+        }
+        return contacts;
+    }
+
+    private void storeContactsToDB() {
+        DatabaseHandler db = new DatabaseHandler(this);
+        db.deleteAllContacts();
+        List<Contact2> contacts = getCheckedItems();
+        for(int i=0; i<contacts.size(); i++) {
+            db.addContact(contacts.get(i));
+        }
+    }
+
     public void firefeedScreen(View view) {
 //        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
@@ -102,12 +137,14 @@ public class ContactsActivity extends ActionBarActivity{
         boolean login = sharedPref.getBoolean(getString(R.string.login), false);
         if(login==true) {
             Log.i(TAG, "Updating contacts details");
+            storeContactsToDB();
             //return to FireFeed
             finish();
             return;
         }
         else {
             Log.i(TAG, "Initializing contacts details");
+            storeContactsToDB();
         }
 
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -124,4 +161,5 @@ public class ContactsActivity extends ActionBarActivity{
     public void endContacts(View view) {
         finish();
     }
+
 }

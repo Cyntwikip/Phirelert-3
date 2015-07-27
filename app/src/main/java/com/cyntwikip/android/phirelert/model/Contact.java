@@ -10,18 +10,21 @@ public class Contact {
     private ArrayList<String> phoneNumber;
     private String displayName;
     private String contactID;
+    private boolean isChecked;
 
     public Contact(String contactID, String displayName, String phoneNumber) {
         this.contactID = contactID;
         this.displayName = displayName;
         this.phoneNumber = new ArrayList<>();
         this.phoneNumber.add(phoneNumber);
+        this.isChecked = false;
     }
 
     public Contact(String contactID, String displayName) {
         this.contactID = contactID;
         this.displayName = displayName;
         this.phoneNumber = new ArrayList<>();
+        this.isChecked = false;
     }
 
     public void addPhoneNumber(String number) {
@@ -38,5 +41,13 @@ public class Contact {
 
     public String getDisplayName() {
         return displayName;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setIsChecked(boolean isChecked) {
+        this.isChecked = isChecked;
     }
 }

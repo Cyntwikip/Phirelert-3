@@ -6,6 +6,7 @@ package com.cyntwikip.android.phirelert.model;
 public class Location {
     private int id;
     private String location;
+    private boolean isChecked = false;
 
     public Location() {}
 
@@ -32,5 +33,13 @@ public class Location {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setIsChecked(boolean isChecked) {
+        this.isChecked = isChecked;
     }
 }

@@ -152,7 +152,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<Location> getAllLocations() {
         List<Location> locList = new ArrayList<Location>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_CONTACTS;
+        String selectQuery = "SELECT  * FROM " + TABLE_LOCATIONS;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
