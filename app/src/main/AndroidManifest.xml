@@ -23,7 +23,8 @@
         <activity
             android:name=".MainActivity"
             android:icon="@drawable/logo"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -31,31 +32,35 @@
         </activity>
         <activity
             android:name=".StartupActivity"
-            android:label="" >
-            android:parentActivityName=".MainActivity" >
+            android:label=""
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cyntwikip.android.phirelert.MainActivity" />
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:label="" >
-            android:parentActivityName=".StartupActivity" >
+            android:label=""
+            android:screenOrientation="portrait"
+            android:parentActivityName=".StartupActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cyntwikip.android.phirelert.StartupActivity" />
         </activity>
         <activity
             android:name=".LookoutsActivity"
-            android:label="" >
-            android:parentActivityName=".RegisterActivity" >
+            android:label=""
+            android:screenOrientation="portrait"
+            android:parentActivityName=".RegisterActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cyntwikip.android.phirelert.RegisterActivity" />
         </activity>
         <activity
             android:name=".ContactsActivity"
-            android:label="" >
+            android:label=""
+            android:screenOrientation="portrait"
             android:parentActivityName=".LookoutsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -63,7 +68,8 @@
         </activity>
         <activity
             android:name=".FireFeedActivity"
-            android:label="" >
+            android:label=""
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -71,7 +77,8 @@
         </activity>
         <activity
             android:name=".ReportActivity"
-            android:label="" >
+            android:label=""
+            android:screenOrientation="portrait"
             android:parentActivityName=".FireFeedActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
