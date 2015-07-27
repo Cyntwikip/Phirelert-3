@@ -12,7 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.cyntwikip.android.phirelert.model.Account;
+import com.cyntwikip.android.phirelert.model.DatabaseHandler;
 import com.cyntwikip.android.phirelert.utils.ContactManager;
+
+import java.util.List;
 
 
 public class RegisterActivity extends ActionBarActivity {
@@ -27,12 +31,32 @@ public class RegisterActivity extends ActionBarActivity {
         //setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_register);
 
-        //set mobile number
-        TelephonyManager tm = (TelephonyManager)getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
-        String number = ContactManager.getContactNumberFromSIM(tm);
-        EditText num = (EditText) findViewById(R.id.register_mobile_number);
-        num.setText("heyy");
-        num.setText(number);
+        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
+        boolean login = sharedPref.getBoolean(getString(R.string.login), false);
+
+        if(login==true) {
+            DatabaseHandler db = new DatabaseHandler(this);
+            EditText name = (EditText)findViewById(R.id.register_name);
+            EditText number = (EditText)findViewById(R.id.register_mobile_number);
+            EditText address = (EditText)findViewById(R.id.activity_register_home_address);
+
+            List<Account> accounts = db.getAllAccounts();
+            try {
+                Account acc = accounts.get(0);
+                name.setText(acc.getName());
+                number.setText(acc.getNumber());
+                address.setText(acc.getAddress());
+            } catch(Exception e) {}
+        }
+
+        else {
+            //set mobile number
+            TelephonyManager tm = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+            String number = ContactManager.getContactNumberFromSIM(tm);
+            EditText num = (EditText) findViewById(R.id.register_mobile_number);
+            //num.setText("heyy");
+            num.setText(number);
+        }
     }
 
     @Override
@@ -60,16 +84,38 @@ public class RegisterActivity extends ActionBarActivity {
     public void lookoutsScreen(View view) {
 
         SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.PREF_NAME), Context.MODE_PRIVATE);
+        DatabaseHandler db = new DatabaseHandler(this);
 
         boolean login = sharedPref.getBoolean(getString(R.string.login), false);
         if(login==true) {
             Log.i("Cyntwikip", "Updating account details");
+
+            EditText name = (EditText)findViewById(R.id.register_name);
+            EditText number = (EditText)findViewById(R.id.register_mobile_number);
+            EditText address = (EditText)findViewById(R.id.activity_register_home_address);
+
+            List<Account> accounts = db.getAllAccounts();
+            try {
+                Account acc = accounts.get(0);
+                acc.setName(name.getText().toString());
+                acc.setNumber(number.getText().toString());
+                acc.setAddress(address.getText().toString());
+
+                db.updateAccount(acc);
+
+            } catch (Exception e) {}
+
             //return to FireFeed
             finish();
             return;
         }
         else {
             Log.i("Cyntwikip", "Initializing account details");
+
+            EditText name = (EditText)findViewById(R.id.register_name);
+            EditText number = (EditText)findViewById(R.id.register_mobile_number);
+            EditText address = (EditText)findViewById(R.id.activity_register_home_address);
+            db.addAccount(new Account(name.getText().toString(), number.getText().toString(), address.getText().toString()));
         }
 
         Intent intent = new Intent(this, LookoutsActivity.class);

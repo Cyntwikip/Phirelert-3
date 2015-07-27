@@ -15,10 +15,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cyntwikip.android.phirelert.FireFeed.SlidingTabLayout;
 import com.cyntwikip.android.phirelert.FireFeed.ViewPagerAdapter;
+import com.cyntwikip.android.phirelert.model.Account;
+import com.cyntwikip.android.phirelert.model.DatabaseHandler;
+
+import java.util.List;
 
 
 public class FireFeedActivity extends ActionBarActivity  {
@@ -45,6 +50,13 @@ public class FireFeedActivity extends ActionBarActivity  {
         setNavDrawer();
         setSlidingTabs();
 
+        updateSettingsInfo();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateSettingsInfo();
     }
 
     @Override
@@ -71,6 +83,19 @@ public class FireFeedActivity extends ActionBarActivity  {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void updateSettingsInfo() {
+        //update settings
+        TextView settings_name = (TextView)findViewById(R.id.settings_user);
+        TextView settings_num = (TextView)findViewById(R.id.settings_num);
+        DatabaseHandler db = new DatabaseHandler(this);
+        List<Account> accounts = db.getAllAccounts();
+        try {
+            Account acc = accounts.get(0);
+            settings_name.setText(acc.getName());
+            settings_num.setText(acc.getNumber());
+        } catch (Exception e) {}
     }
 
     private void setToolbar() {
